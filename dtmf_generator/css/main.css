@@ -1,0 +1,50 @@
+body {
+	background-color: #CCC;
+	padding: 0;
+	margin: 0;
+	font-family: courier, "Courier New", monospace
+}
+
+button,
+strong {
+	font-family: courier, "Courier New", monospace
+}
+
+h3 {
+	text-align: center
+}
+
+table {
+	margin: 0 auto 50px
+}
+
+.dialpad {
+	background-color: #f0f0f0;
+	border: solid 1px #999;
+	border-radius: 3px;
+	padding: 10px
+}
+
+.dialpad td {
+	padding: 7px
+}
+
+.beginDial {
+	height: 35px;
+	background-color: #cccccc;
+	width: 35px;
+	border-radius: 3px;
+	font-size: 1.5em
+}
+
+.beginDial:active {
+	background-color: #58cce0
+}
+
+.generateButton {
+	height: 35px;
+	background-color: #cccccc;
+	width: 210px;
+	border-radius: 3px;
+	font-size: 1.5em
+}

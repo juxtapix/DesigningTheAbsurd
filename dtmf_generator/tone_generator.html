@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="./css/main.css" rel="stylesheet" type="text/css">
+
+
+<body>
+
+<script src="./js/DTMFgenerator.js"></script>
+
+<br><br><br>
+
+<table class="dialpad">
+	<tbody>
+
+    <tr>
+      <td>
+    	Freq. 1 <input id="frequency1" type="text"><br>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+      Freq. 2 <input id="frequency2" type="text"><br>
+      </td>
+    </tr>
+
+    <tr>
+    <td>
+      <button class="generateButton" onmousedown="dialTone(document.getElementById('frequency1').value, document.getElementById('frequency2').value)" onmouseup="stop()">Generate</button>
+    </td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+</body>
