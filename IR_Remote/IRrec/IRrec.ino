@@ -1,5 +1,6 @@
 // Designing the Absurd
 // Pedro Oliveira 2020
+// IR Receiver
 
 #include <IRremote.h>
 
@@ -17,8 +18,8 @@ decode_results results;
 
 void setup()
 {
-  Serial.begin(9600);
-  irrecv.enableIRIn();            // Start the receiver
+  Serial.begin(9600);             // initialize Serial
+  irrecv.enableIRIn();            // initialize IR receiver
 }
 
 void loop() {
