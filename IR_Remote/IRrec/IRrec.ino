@@ -17,10 +17,6 @@ decode_results results;
 
 void setup()
 {
-  pinMode(rPin, OUTPUT);          // initialize pwm pin as an output.
-  pinMode(gPin, OUTPUT);          // initialize pwm pin as an output.
-  pinMode(bPin, OUTPUT);          // initialize pwm pin as an output.
-
   Serial.begin(9600);
   irrecv.enableIRIn();            // Start the receiver
 }
