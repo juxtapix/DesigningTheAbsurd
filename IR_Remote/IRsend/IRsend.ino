@@ -4,7 +4,7 @@
 
 #include <IRremote.h>
 
-// constants won't change.
+// constant for button pins
 const int rButton = 7;
 const int gButton = 6;
 const int bButton = 5;
