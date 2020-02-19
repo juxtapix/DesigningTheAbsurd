@@ -1,5 +1,6 @@
 // Designing the Absurd
 // Pedro Oliveira 2020
+// IR Transmitter
 
 #include <IRremote.h>
 
@@ -7,6 +8,9 @@
 const int rButton = 7;
 const int gButton = 6;
 const int bButton = 5;
+
+// constant IR Transmitter Pin
+// Arduino Uno - pin ~3
 
 IRsend irsend;
 
