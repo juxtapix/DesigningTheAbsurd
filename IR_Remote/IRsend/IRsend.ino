@@ -1,7 +1,9 @@
 // Designing the Absurd
-// Pedro Oliveira 2020
+// Pedro Oliveira 2020/2021
 // IR Transmitter
 
+#include <Arduino.h>
+#include "PinDefinitionsAndMore.h"
 #include <IRremote.h>
 
 // constant for button pins
@@ -9,29 +11,33 @@ const int rButton = 7;
 const int gButton = 6;
 const int bButton = 5;
 
-// constant IR Transmitter Pin
-// Arduino Uno - pin ~3
+// Constant IR Transmitter Pin (IR output)
+// Arduino Uno / Nano Every - pin ~3
 
-IRsend irsend;
 
 void setup()
 {
+  Serial.begin(115200);
+  IrSender.begin(IR_SEND_PIN, ENABLE_LED_FEEDBACK);
+  Serial.print("IR Sender Pin: ");
+  Serial.println(IR_SEND_PIN);
+
   pinMode(rButton, INPUT);          // initialize pin as an input.
-  pinMode(gButton, INPUT);          // initialize pin as an input.
+  //  pinMode(gButton, INPUT);          // initialize pin as an input.
   pinMode(bButton, INPUT);          // initialize pin as an input.
 }
 
 void loop() {
-	if (digitalRead(rButton) == HIGH) {
-		irsend.sendNEC(0x77E1C0EA, 32); // Red
-		delay(40);
-	}
-   else if (digitalRead(gButton) == HIGH) {
-    irsend.sendNEC(0x77E1FAEA, 32); // Green
+  if (digitalRead(rButton) == HIGH) {
+    IrSender.sendNECRaw(0xFC0887EE, 0); // Red
     delay(40);
   }
+  //   else if (digitalRead(gButton) == HIGH) {
+  //    irsend.sendNECRaw(0xFC0B87EE, 0); // Green
+  //    delay(40);
+  //  }
   else if (digitalRead(bButton) == HIGH) {
-    irsend.sendNEC(0x77E13AEA, 32); // Blue
+    IrSender.sendNECRaw(0xFC0787EE, 0); // Blue
     delay(40);
   }
 }
