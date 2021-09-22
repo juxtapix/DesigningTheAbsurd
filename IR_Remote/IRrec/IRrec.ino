@@ -1,42 +1,44 @@
 // Designing the Absurd
-// Pedro Oliveira 2020
+// Pedro Oliveira 2020/2021
 // IR Receiver
 
+#define DECODE_NEC          
+#include <Arduino.h>
+#include "PinDefinitionsAndMore.h"
 #include <IRremote.h>
 
-
 // constant for RGB LED pins
-const int rPin = 6;
+const int rPin = 9;
 const int gPin = 5;
 const int bPin = 3;
 
-// constant IR Receiver Pin
-const int RECV_PIN = 11;
+// Constant IR Receiver Pin (IR input)
+// Arduino Uno / Nano Every - pin 2
 
-IRrecv irrecv(RECV_PIN);
-decode_results results;
-
-void setup()
-{
-  Serial.begin(9600);             // initialize Serial
-  irrecv.enableIRIn();            // initialize IR receiver
+void setup() {
+  Serial.begin(115200);
+  IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);
+  Serial.print("IR Receiver Pin: ");
+  Serial.println(IR_RECEIVE_PIN);
 }
 
 void loop() {
-  if (irrecv.decode(&results)) {
-    if (results.value == 0x77E1C0EA) {
-      rgb(255, 0, 0);   // Red
+  if (IrReceiver.decode()) {
+
+    IrReceiver.printIRResultShort(&Serial);
+    IrReceiver.resume();
+
+    if (IrReceiver.decodedIRData.command == 0x8) {
+      Serial.println("RED");
+      rgb(255, 0, 0);
+    } else if (IrReceiver.decodedIRData.command == 0xB) {
+      Serial.println("BLUE");
+      rgb(0, 255, 0);
+    } else if (IrReceiver.decodedIRData.command == 0x7) {
+      Serial.println("BLUE");
+      rgb(0, 0, 255);
     }
-    else if (results.value == 0x77E1FAEA) {
-      rgb(0, 255, 0);   // Green
-    }
-    else if (results.value == 0x77E13AEA) {
-      rgb(0, 0, 255);   // Blue
-    }
-    Serial.println(results.value, HEX);
-    irrecv.resume();    // Receive the next value
   }
-  delay(100);
 }
 
 // This is a function that expect 3 values (R, G, B)
